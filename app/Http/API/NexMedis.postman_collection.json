@@ -1,0 +1,561 @@
+{
+	"info": {
+		"_postman_id": "90fcaa13-ebb3-4454-b658-717ed6098fe9",
+		"name": "NexMedis",
+		"description": "Ini adalah dokumentasi API {{ NexMedisSosmed }}  \n\nMenurut saya, saya telah menggunakan pattern MVC (Model View Controller) \\*tapi karena backend maka viewnya bentuk JSON semua. Saya memakai spatie untuk Role dan saya menamai role tersebut user dan admin.\n\nModel yang ada di RestAPI:\n\n- User\n    \n- Post\n    \n- Komen\n    \n- LIke",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12266282"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "user@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{nexmedis}}/api/login",
+							"host": [
+								"{{nexmedis}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						},
+						"description": "End point ini berfungsi untuk melakukan proses login agar mendapatkan token untuk dipakai di bearer token"
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "nilamsty",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "nilamsty@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "confirm_password",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{nexmedis}}/api/register",
+							"host": [
+								"{{nexmedis}}"
+							],
+							"path": [
+								"api",
+								"register"
+							]
+						},
+						"description": "End point ini digunakan untuk proses registrasi jika user belum mempunyai akun"
+					},
+					"response": []
+				}
+			],
+			"description": "Folder yang berisi AUthenticate {{ Login&Register }}"
+		},
+		{
+			"name": "App",
+			"item": [
+				{
+					"name": "Postingan",
+					"item": [
+						{
+							"name": "Homepage",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "8|XXWDdW8jdWEMY106a2gDGtPUi3sD4qLtMHQpXdfHf5531bbf",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{nexmedis}}/api/homepage",
+									"host": [
+										"{{nexmedis}}"
+									],
+									"path": [
+										"api",
+										"homepage"
+									]
+								},
+								"description": "End point ini, berfungsi untuk melihat semua postingan yang ada di aplikasi ini, layaknya X.\n\n\\*tetapi belum di improve dari data yang terbaru\n\n- User yang boleh masuk harus memiliki akun\n    \n- Menggunakan Authorization Bearer Token yang didapat dari proses login terlebih dahulu"
+							},
+							"response": []
+						},
+						{
+							"name": "Buat Postingan",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "10|67tz0YDuaWfCqbHBO8qXHnfjQgCFMfxaXnTQBnJo2a55278a",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "judulPost",
+											"value": "postingan 3 dengan gambar LAMM",
+											"type": "text"
+										},
+										{
+											"key": "postingan",
+											"value": "isi postingan 3 space",
+											"type": "text"
+										},
+										{
+											"key": "pembuat_post",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "fileImage",
+											"type": "file",
+											"src": "/mnt/Drive/1-BACKUP-HDD/DESA/4 desa.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{nexmedis}}/api/buat-postingan",
+									"host": [
+										"{{nexmedis}}"
+									],
+									"path": [
+										"api",
+										"buat-postingan"
+									]
+								},
+								"description": "End point ini, berfungsi untuk membuat postingan dari user yang sudah login di aplikasi ini, dan ini menggunakan relasi One to Many yaitu 1 user memiliki banyak post\n\n- User yang boleh masuk memiliki akun dulu\n    \n- Menggunakan Authorization Bearer Token yang didapat dari proses login terlebih dahulu\n    \n- Postingan saya isi type longtext, mengingat postingan bisa banyak dan di include kan simbol-simbol"
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Postingan",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "10|67tz0YDuaWfCqbHBO8qXHnfjQgCFMfxaXnTQBnJo2a55278a",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "judulPost",
+											"value": "postingan 2 edit",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "postingan",
+											"value": "edit isi postingan 2",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "pembuat_post",
+											"value": "2",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "fileImage",
+											"type": "file",
+											"src": "/home/teddyfalwayswrong/Pictures/Community-wallpapers/eos_wallpapers_community/endeavour_os_simple_wallpaper_dark.png"
+										},
+										{
+											"key": "_method",
+											"value": "PUT",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{nexmedis}}/api/edit-postingan/5",
+									"host": [
+										"{{nexmedis}}"
+									],
+									"path": [
+										"api",
+										"edit-postingan",
+										"5"
+									]
+								},
+								"description": "End point ini digunakan untuk mengedit postingan, terdapat validasi untuk siapa yang boleh mengedit postingan tersebut dilihat dari parameter user->id yang login sama atau tidak dengan user->id yang terdapat dalam postingan tersebut.\n\n- User yang boleh masuk harus memiliki akun dulu\n    \n- Menggunakan Authorization Bearer Token yang didapat dari proses login terlebih dahulu\n    \n- Menggunakan parameter id post untuk dapat mengedit postingan tersebut"
+							},
+							"response": []
+						},
+						{
+							"name": "Hapus Postingan",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "6|WxZgb8NYJWXJ9HrANJhsWQplEmn30TuZvKZO1FV6960f1ad8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{nexmedis}}/api/hapus-postingan/3",
+									"host": [
+										"{{nexmedis}}"
+									],
+									"path": [
+										"api",
+										"hapus-postingan",
+										"3"
+									]
+								},
+								"description": "End point ini digunakan untuk menghapus postingan, terdapat validasi untuk siapa yang boleh mengedit postingan tersebut dilihat dari parameter user->id yang login sama atau tidak dengan user->id yang terdapat dalam postingan tersebut.\n\n- User yang boleh masuk harus memiliki akun dulu\n    \n- Menggunakan Authorization Bearer Token yang didapat dari proses login terlebih dahulu\n    \n- Menggunakan parameter id post untuk dapat menghapus postingan tersebut"
+							},
+							"response": []
+						},
+						{
+							"name": "Lihat Postingan",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "11|ZYZzs9Z5xPe3v4sgRoGFemAX1Q97oA4ApBayRcYR8772df5a",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{nexmedis}}/api/postingan/4",
+									"host": [
+										"{{nexmedis}}"
+									],
+									"path": [
+										"api",
+										"postingan",
+										"4"
+									]
+								},
+								"description": "End point ini, berfungsi untuk melihat detail postingan yang ada di aplikasi ini.\n\n- User yang boleh masuk harus memiliki role 'user | admin'\n    \n- Menggunakan Authorization Bearer Token yang didapat dari proses login terlebih dahulu\n    \n- Menggunakan parameter id post\n    \n- Bisa menampilkan isi komen yang ada dalam post tersebut yang dipilih"
+							},
+							"response": []
+						},
+						{
+							"name": "Like",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "7|FBuwayIiBSKXJ4Ld9i8zfRYD9wOOIJl3ZUI8sBRD57c58fcc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "user_id",
+											"value": "4",
+											"type": "text"
+										},
+										{
+											"key": "post_id",
+											"value": "2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{nexmedis}}/api/post/2/like",
+									"host": [
+										"{{nexmedis}}"
+									],
+									"path": [
+										"api",
+										"post",
+										"2",
+										"like"
+									]
+								},
+								"description": "Fitur untuk like postingan"
+							},
+							"response": []
+						},
+						{
+							"name": "Dislike",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "7|FBuwayIiBSKXJ4Ld9i8zfRYD9wOOIJl3ZUI8sBRD57c58fcc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{nexmedis}}/api/post/2/like",
+									"host": [
+										"{{nexmedis}}"
+									],
+									"path": [
+										"api",
+										"post",
+										"2",
+										"like"
+									]
+								},
+								"description": "Fitur untuk dislike postingan"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Komentar",
+					"item": [
+						{
+							"name": "Post-Komen",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "11|ZYZzs9Z5xPe3v4sgRoGFemAX1Q97oA4ApBayRcYR8772df5a",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "post_id",
+											"value": "7",
+											"type": "text"
+										},
+										{
+											"key": "pembuat_komen",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "isi_komen",
+											"value": "ini komen ku user banya",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{nexmedis}}/api/buat-komen",
+									"host": [
+										"{{nexmedis}}"
+									],
+									"path": [
+										"api",
+										"buat-komen"
+									]
+								},
+								"description": "End point ini, berfungsi untuk membuat komen dari postingan dari user yang sudah login di aplikasi ini, dan ini menggunakan relasi One to Many yaitu 1 postingan memiliki banyak komen\n\n- User yang boleh masuk memiliki role akun dulu\n    \n- Menggunakan Authorization Bearer Token yang didapat dari proses login terlebih dahulu\n    \n- Komen saya isi longtext juga sebab komen bisa panjang dan disisipi simbol juga seperti postingan"
+							},
+							"response": []
+						},
+						{
+							"name": "Edit-Komentar",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "21|pZHyWWpSnkb1NDuywlefUbdstDxtA7PMBoovem6uefe69754",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "isi_komen",
+											"value": "ini komen ku edited",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{nexmedis}}/api/edit-komentar/3",
+									"host": [
+										"{{nexmedis}}"
+									],
+									"path": [
+										"api",
+										"edit-komentar",
+										"3"
+									]
+								},
+								"description": "End point ini digunakan untuk mengedit komen, terdapat validasi untuk siapa yang boleh mengedit komen tersebut dilihat dari parameter user->id yang login sama atau tidak dengan user->id yang terdapat dalam postingan tersebut.\n\n- User yang boleh masuk harus memiliki akun dulu\n    \n- Menggunakan Authorization Bearer Token yang didapat dari proses login terlebih dahulu\n    \n- Menggunakan parameter id komen untuk dapat mengedit komen tersebut"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Komentar",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "21|pZHyWWpSnkb1NDuywlefUbdstDxtA7PMBoovem6uefe69754",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{nexmedis}}/api/hapus-komentar/3",
+									"host": [
+										"{{nexmedis}}"
+									],
+									"path": [
+										"api",
+										"hapus-komentar",
+										"3"
+									]
+								},
+								"description": "End point ini digunakan untuk menghapus postingan, terdapat validasi untuk siapa yang boleh mengedit postingan tersebut dilihat dari parameter user->id yang login sama atau tidak dengan user->id yang terdapat dalam postingan tersebut.\n\n- User yang boleh masuk harus memiliki akun dulu\n    \n- Menggunakan Authorization Bearer Token yang didapat dari proses login terlebih dahulu\n    \n- Menggunakan parameter id post untuk dapat menghapus postingan tersebut"
+							},
+							"response": []
+						},
+						{
+							"name": "Search",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "2|ng9AuwNGx8nr2nhpPVzhPEw0DhCOmzyL1rtqmiut48256950",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{nexmedis}}/api/search?keyword=isi",
+									"host": [
+										"{{nexmedis}}"
+									],
+									"path": [
+										"api",
+										"search"
+									],
+									"query": [
+										{
+											"key": "keyword",
+											"value": "isi"
+										}
+									]
+								},
+								"description": "End point ini berfungsi untuk mencari / search dari kata kunci atau yang saya buat ialah keyword dari postingan atau judul postingan\n\n- User yang boleh masuk harus memiliki akun dulu\n    \n- Menggunakan Authorization Bearer Token yang didapat dari proses login terlebih dahulu"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
