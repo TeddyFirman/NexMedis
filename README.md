@@ -7,6 +7,8 @@
 Dikembangkan oleh :
 
 - Github : <a href="https://github.com/TeddyFirman"> Teddy Firman Winarto </a>
+- Dokumentasi API = https://documenter.getpostman.com/view/12266282/2sAXqy2yfH
+- Export API = app/Http/API
 
 ## Fitur 
 
