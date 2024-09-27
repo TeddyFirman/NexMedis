@@ -1,7 +1,7 @@
 <h1 align="center">NexMedis Sosmed</h1>
-
-
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/443671c5-276c-4f66-8897-954834d6b884" alt="NexMedis Sosmed Image"/>
+</p>
 ## Author
 
 Dikembangkan oleh :
